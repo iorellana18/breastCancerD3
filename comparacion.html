@@ -16,6 +16,22 @@
   <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="node_modules/materialize-css/bin/materialize.js"></script>
   <script src="local/js/init.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="local/js/radarchart.js"></script>
+  <style>
+    /*body {
+      overflow: hidden;
+      margin: 0;
+      font-size: 14px;
+      font-family: "Helvetica Neue", Helvetica;
+    }
+
+    #chart {
+      position: absolute;
+      top: 50px;
+      left: 100px;
+    } */
+  </style>
 
 </head>
 <body ng-app>
@@ -43,73 +59,25 @@
     </div>
   </nav>
 
+  <div class="">
+    <div class="section row">
 
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center red-text lighten-2-text">Breast Cancer Data Set</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">
-        A continuación se presentan visualizaciones que permiten analizar el conjunto de datos ofrecidos por data set wiconsing
-        </h5>
-      <br><br>
-
-    </div>
-  </div>
-
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">swap_vert</i></h2>
-            <h5 class="center">Correlación entre atributos celulares</h5>
-
-            <p class="light">Texto descripción</p>
-
-            <div class="row center">
-              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">pie_chart</i></h2>
-            <h5 class="center">Visualización entidades</h5>
-
-            <p class="light">Texto descripción</p>
-
-            <div class="row center">
-              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">check_circle</i></h2>
-            <h5 class="center">Clasificacion</h5>
-
-            <p class="light">Texto descripción</p>
-
-            <div class="row center">
-              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
-            </div>
-
-          </div>
-        </div>
+    <div class="col s4 card-panel center-align red lighten-5">
+      <h5>Comparacion promedios</h5>
+      <div class="card-panel center-align red darken-2 white-text">
+      <p>
+        A continuación se presenta el diagrama de radio que permite comparar los promedios obtenidos para cada atributo, cuando las celulas son clasificadas como benignas o malignas.
+      </p>
       </div>
-
+      <div class="divider"></div>
+      </br>
     </div>
-    <br><br>
-
-    <div class="section">
-
+      <div id="body" class="col s8">
+       <div id="chart">
+       </div>
+       <script type="text/javascript" src="local/js/araña.js"></script>
+      </div>
+       
     </div>
   </div>
 
@@ -146,9 +114,6 @@
       </div>
     </div>
   </footer>
-
-
-  
 
   </body>
 </html>
