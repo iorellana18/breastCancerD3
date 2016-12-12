@@ -1,0 +1,22 @@
+{
+  "name": "breast_cancer_visual_project",
+  "version": "1.0.0",
+  "description": "Proyecto de visualización de datos, busca visualizar breast cancer data set Wisconsing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iorellana18/breastCancerD3.git"
+  },
+  "author": "Elías González e Ian Orellana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iorellana18/breastCancerD3/issues"
+  },
+  "homepage": "https://github.com/iorellana18/breastCancerD3#readme",
+  "dependencies": {
+    "d3": "^4.4.0"
+  }
+}
