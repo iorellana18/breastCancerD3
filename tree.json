@@ -1,0 +1,117 @@
+{
+	"name":"atributos",
+	 "children": [
+  
+  {
+   "name": "Desnudez del nucleo",
+   "children": [
+   	{
+   		"name" : "Alta (maligno 174/6)",
+   		"valor" : "4"
+    },
+    {
+   		"name" : "Baja",
+   		"children":[
+   			{
+   				"name" : "Alta uniformidad (maligno 47/1)",
+   				"valor" : "4"
+   			},
+   			{
+   				"name" : "Baja uniformidad",
+   				"children" : [
+   					{
+   						"name" : "Alta agrupación celular",
+   						"children" : [
+   							{	
+   								"name": "Alta normalidad en el nucleolo (maligno 5)",
+   								"valor": "4"
+   							},
+   							{
+   								"name": "Baja normalidad en el nucleolo (benigno 23/7)",
+   								"valor" : "2"
+   							}
+   						]
+   					},
+   					{
+   						"name" : "Baja agrupación celular (benigno 429/8)",
+   						"valor" :"2"
+   					}
+   				]
+   			}
+   		]
+    }
+   ]
+  },
+  {
+   "name": "Adhesion marginal",
+   "children": [
+   		{
+   			"name" : "Alta (maligno 104/3)",
+   			"valor" : "4"
+   		},
+   		{
+   			"name" : "Baja",
+   			"children" : [
+   				{
+   					"name" : "Alta agrupación celular (maligno 168/45)",
+   					"valor" : "4"
+   				},
+   				{
+   					"name" : "Baja agrupación celular",
+   					"children" : [
+   						{
+   							"name" :"Alto grado de mitosis (maligno 12)",
+   							"valor" : "4"
+   						},
+   						{
+   							"name" : "Bajo grado de mitosis",
+   							"children" : [
+   								{
+   									"name" : "Alta normalidad en el nucleolo (19/5)",
+   									"valor" : "4"
+   								},
+   								{
+   									"name" : "Baja normalidad en el nucleolo (380/44)",
+   									"valor" : "2"
+   								}
+   							]
+   						}
+   					]
+   				}
+   			]
+   		}
+   ]
+  },
+  {
+  	"name" : "Textura de la cromatina",
+  	"children" : [
+  		{
+  			"name" : "Irregular (maligno 149/11)",
+  			"valor": "4"
+  		},
+  		{
+  			"name" : "Regular",
+  			"children":[
+  				{
+  					"name" :"Alta desnudez del núcleo (maligno 85/20)",
+  					"valor" :"4"
+  				},
+  				{
+  					"name" : "Baja desnudez del núcleo",
+  					"children" :[
+  						{
+  							"name" : "Alta uniformidad en tamaño celular (maligno 16)",
+  							"valor" : "4"
+  						},
+  						{
+  							"name" : "Baja uniformidad en tamaño celular (benigno 423/54)",
+  							"valor" : "2"
+  						}
+  					]
+  				}
+  			]
+  		}
+  	]
+  }
+]
+	}
