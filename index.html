@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Proyecto visualización</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="node_modules/materialize-css/bin/materialize.css" 
+        type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="local/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+  <!--  Scripts-->
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/materialize-css/bin/materialize.js"></script>
+  <script src="local/js/init.js"></script>
+
+</head>
+<body ng-app>
+  
+  <nav class="red lighten-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="material-icons">home</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Diccionario de atributos</a></li>
+        <li><a href="#">Datos tabulados</a></li>
+        <li><a href="#">Correlación</a></li>
+        <li><a href="#">Comparación</a></li>
+        <li><a href="#">Clasificación</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Diccionario de atributos</a></li>
+        <li><a href="#">Datos tabulados</a></li>
+        <li><a href="#">Correlación</a></li>
+        <li><a href="#">Comparación</a></li>
+        <li><a href="#">Clasificación</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center red-text lighten-2-text">Breast Cancer Data Set</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">
+        A continuación se presentan visualizaciones que permiten analizar el conjunto de datos ofrecidos por data set wiconsing
+        </h5>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">swap_vert</i></h2>
+            <h5 class="center">Correlación entre atributos celulares</h5>
+
+            <p class="light">Texto descripción</p>
+
+            <div class="row center">
+              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">pie_chart</i></h2>
+            <h5 class="center">Visualización entidades</h5>
+
+            <p class="light">Texto descripción</p>
+
+            <div class="row center">
+              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">check_circle</i></h2>
+            <h5 class="center">Clasificacion</h5>
+
+            <p class="light">Texto descripción</p>
+
+            <div class="row center">
+              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+  </div>
+
+  <footer class="page-footer red lighten-2 ">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Visualización de Datos</h5>
+          <p class="grey-text text-lighten-4">
+          Como equipo, creamos esta pagina, con el fin de facilitar la visualización y análisis de los datos que entrega el Data Set Breast Cancer, que describe las caracterizaras de las células tumorales mamarias, cuando son benignas o malignas. Todo esto se desarrollo para el ramo Visualización de Datos de la <a href="http://www.usach.cl/"> Universidad de Santiago </a>, con el profesor Diago Avila Orellana.
+          </p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Recursos</h5>
+          <ul>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data">Data Set</a></li>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.names">Descripcion Data set</a></li>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Original)">Breast Cancer Wisconsin (Original) Data Set</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Otros</h5>
+          <ul>
+            <li><a class="white-text" href="#!"><img src="local/img/github.ico"></br> BreastCancerD3 GitHub Project</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Creado por Elías González e Ian Orellana
+      </div>
+    </div>
+  </footer>
+
+
+  
+
+  </body>
+</html>
