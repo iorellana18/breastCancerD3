@@ -15,8 +15,7 @@ var RadarChart = {
 	 TranslateX: 80,
 	 TranslateY: 30,
 	 ExtraWidthX: 100,
-	 ExtraWidthY: 100,
-	 color: d3.scale.category10()
+	 ExtraWidthY: 100
 	};
 	
 	if('undefined' !== typeof options){
@@ -30,7 +29,6 @@ var RadarChart = {
 	var allAxis = (d[0].map(function(i, j){return i.axis}));
 	var total = allAxis.length;
 	var radius = cfg.factor*Math.min(cfg.w/2, cfg.h/2);
-	var Format = d3.format('%');
 	d3.select(id).select("svg").remove();
 	
 	var g = d3.select(id)
@@ -58,7 +56,7 @@ var RadarChart = {
 	   .style("font-size", "10px")
 	   .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
 	   .attr("fill", "#737373")
-	   .text(Format((j+1)*cfg.maxValue/cfg.levels));
+	   .text((j+1)*cfg.maxValue/cfg.levels);
 	}
 	
 	series = 0;
@@ -82,7 +80,7 @@ axis.append("line")
 		.attr("class", "legend")
 		.text(function(d){return d})
 		.style("font-family", "sans-serif")
-		.style("font-size", "11px")
+		.style("font-size", "12px")
 		.attr("text-anchor", "middle")
 		.attr("dy", "1.5em")
 		.attr("transform", function(d, i){return "translate(0, -10)"})
@@ -106,7 +104,15 @@ axis.append("line")
 					 .append("polygon")
 					 .attr("class", "radar-chart-serie"+series)
 					 .style("stroke-width", "2px")
-					 .style("stroke", cfg.color(series))
+					 .style("stroke", function(d,i){
+					 	if(series==0){
+							return "#353fd8";
+						}if(series==1){
+							return "#F44336";
+						}else{
+							return "#4CAF50";
+						}
+					 })
 					 .attr("points",function(d) {
 						 var str="";
 						 for(var pti=0;pti<d.length;pti++){
@@ -139,7 +145,15 @@ axis.append("line")
 		  return cfg.h/2*(1-(Math.max(j.value, 0)/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total));
 		})
 		.attr("data-id", function(j){return j.axis})
-		.style("fill", cfg.color(series)).style("fill-opacity", .9)
+		.style("fill", function(d,i){
+			if(series==0){
+				return "#353fd8";
+			}if(series==1){
+				return "#F44336";
+			}else{
+				return "#4CAF50";
+			}
+		}).style("fill-opacity", .9)
 		.on('mouseover', function (d){
 					newX =  parseFloat(d3.select(this).attr('cx')) - 10;
 					newY =  parseFloat(d3.select(this).attr('cy')) - 5;
@@ -147,7 +161,7 @@ axis.append("line")
 					tooltip
 						.attr('x', newX)
 						.attr('y', newY)
-						.text(Format(d.value))
+						.text(d.value)
 						.transition(200)
 						.style('opacity', 1);
 						

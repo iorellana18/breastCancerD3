@@ -7,9 +7,9 @@
 			"children" : 
 			[
 				{
-					"name" : "Variable que representa el grado en que las células se encuentran agrupadas. Esta es una  característica útil porque las células benignas tienden a agruparse  "
+					"name" : "Variable que representa el grado en que las células se encuentran agrupadas. Esta es una  característica útil porque las células benignas tienden a "
 				},{
-					"name" : "en mono-capas, mientras que las células cancerosas a menudo se agrupan en múltiples capas."
+					"name" : "agruparse  en mono-capas, mientras que las células cancerosas a menudo se agrupan en múltiples capas."
 				}
 			]	
 		},
@@ -27,10 +27,10 @@
 			"children" : 
 			[
 				{
-					"name" : "Variable que representa la uniformidad de la forma celular. Las células de cáncer tienden a variar en forma. Puede tomar valores enteros entre en intervalo [1,10], "
+					"name" : "Variable que representa la uniformidad de la forma celular. Las células de cáncer tienden a variar en forma. Puede tomar valores enteros entre  "
 				},
 				{
-					"name" : "donde 10 corresponde a deformidad celular. "
+					"name" : "el intervalo [1,10], donde 10 corresponde a deformidad celular. "
 				}
 			]
 		},
@@ -39,10 +39,10 @@
 			"children" : 
 			[
 				{
-					"name" : "Variable que representa el grado en que las células tienden a permanecer juntas. Las células normales tienden a permanecer juntas y Las células cancerosas  "
+					"name" : "Variable que representa el grado en que las células tienden a permanecer juntas. Las células normales tienden a permanecer juntas y las células"
 				},
 				{
-					"name" : "tienden a perder esta capacidad. Por lo tanto la pérdida de adherencia es un signo de malignidad."
+					"name" : " cancerosas  tienden a perder esta capacidad. Por lo tanto la pérdida de adherencia es un signo de malignidad."
 				}
 			]
 		},
@@ -51,7 +51,10 @@
 			"children" : 
 			[
 				{
-					"name" : "Variable que representa el tamaño de las células epiteliales. Las células epiteliales que se agrandan de manera significativa puede ser una célula maligna."
+					"name" : "Variable que representa el tamaño de las células epiteliales. Las células epiteliales que se agrandan de manera significativa puede ser una célula"
+				},
+				{
+					"name" : "maligna."
 				}
 			]
 		},
@@ -60,10 +63,10 @@
 			"children" : 
 			[
 				{
-					"name" : "Variable que representa el grado de desnudez de los núcleos celulares. Los núcleos que no están rodeados por el citoplasma (el resto de la célula), perteneces"
+					"name" : "Variable que representa el grado de desnudez de los núcleos celulares. Los núcleos que no están rodeados por el citoplasma (el resto de la célula),"
 				},
 				{
-					"name" : "  a núcleos de células  que frecuentemente se ven en tumores benignos."
+					"name" : "pertenece a núcleos de células  que frecuentemente se ven en tumores benignos."
 				}
 			]
 		},
@@ -72,10 +75,10 @@
 			"children" : 
 			[
 				{
-					"name" : " Variable que representa la textura de la cromatina celular. Cuando se describe una textura uniforme del núcleo corresponde a una célula benigna. En células  "
+					"name" : " Variable que representa la textura de la cromatina celular. Cuando se describe una textura uniforme del núcleo corresponde a una célula benigna. "
 				},
 				{
-					"name" : "de cáncer la cromatina tiende a ser más gruesa."
+					"name" : "En células de cáncer la cromatina tiende a ser más gruesa."
 				}
 			]
 		},
@@ -84,10 +87,10 @@
 			"children" : 
 			[
 				{
-					"name" : "Variable que representa tamaño del nucléolo celular. Los nucléolos son estructuras pequeñas vistas en los núcleos. En las células normales, el nucléolo suele"
+					"name" : "Variable que representa tamaño del nucléolo celular. Los nucléolos son estructuras pequeñas vistas en los núcleos. En las células normales, el"
 				},
 				{
-					"name" : " ser muy pequeño. En las células cancerosas los nucléolos se vuelven más prominentes, y a veces hay más de uno por célula."
+					"name" : "nucléolo suele ser muy pequeño. En las células cancerosas los nucléolos se vuelven más prominentes, y a veces hay más de uno por célula."
 				}
 			]
 		},
@@ -96,10 +99,13 @@
 			"children" : 
 			[
 				{
-					"name" : "item Mitoses (Mitosis): Variable que representa el grado de división celular. La mitosis es el proceso de división celular que busca generar una célula nueva con las  "
+					"name" : "item Mitoses (Mitosis): Variable que representa el grado de división celular. La mitosis es el proceso de división celular que busca generar una "
 				},
 				{
-					"name" : "mismas características que el progenitor. Se cree que se relacionan con el cáncer por la reproducción indiscriminada de células en el organismo."
+					"name" : "célula nueva con las  mismas características que el progenitor. Se cree que se relacionan con el cáncer por la reproducción indiscriminada de"
+				},
+				{
+					"name" : "células en el organismo."
 				}
 			]
 		},
@@ -108,7 +114,10 @@
 			"children" : 
 			[
 				{
-					"name" : "Atributo que representa la clase de la célula, si esta es de tipo benigna toma valor 2 y si es tipo maligna toma valor 4. Sólo puede tomar estos dos valores."
+					"name" : "Atributo que representa la clase de la célula, si esta es de tipo benigna toma valor 2 y si es tipo maligna toma valor 4. Sólo puede tomar estos "
+				},
+				{
+					"name" : "dos valores."
 				}
 			]	
 		}

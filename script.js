@@ -72,7 +72,7 @@ var text = svg.append("text")
 	.attr("y", 10)
 	.attr("font-size", "12px")
 	.attr("fill", "#404040")
-	.text("What % of owners use a specific service in a week");
+	.text("Tipos");
 		
 //Initiate Legend	
 var legend = svg.append("g")
@@ -92,7 +92,7 @@ var legend = svg.append("g")
 	  .attr("height", 10)
 	  .style("fill", function(d, i){ 
 	  	if(i==1){
-	  		return "#F44336"
+	  		return "#F44336";
 	  	}if(i==2){
 	  		return "#4CAF50";
 	  	}else{
