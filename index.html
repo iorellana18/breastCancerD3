@@ -23,21 +23,17 @@
   <nav class="red lighten-2" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><i class="material-icons">home</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="diccionario.html">Diccionario de atributos</a></li>
-        <li><a href="datosTabulados.html">Datos tabulados</a></li>
-        <li><a href="correlacion.html">Correlación</a></li>
-        <li><a href="comparacion.html">Comparación</a></li>
-        <li><a href="#">Clasificación</a></li>
+        <li><a href="info.html">Información General</a></li>
+        <li><a href="correlacion.html">Correlación atributos</a></li>
+        <li><a href="comparacion.html">Tendencia central</a></li>
+        <li><a href="clasificacion.html">Clasificación celular</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="diccionario.html">Diccionario de atributos</a></li>
-        <li><a href="datosTabulados.html">Datos tabulados</a></li>
-        <li><a href="correlacion.html">Correlación</a></li>
-        <li><a href="comparacion.html">Comparación</a></li>
-        <li><a href="#">Clasificación</a></li>
+        <li><a href="info.html">Información General</a></li>
+        <li><a href="correlacion.html">Correlación atributos</a></li>
+        <li><a href="comparacion.html">Tendencia central</a></li>
+        <li><a href="clasificacion.html">Clasificación celular</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -50,9 +46,14 @@
       <h1 class="header center red-text lighten-2-text">Breast Cancer Data Set</h1>
       <div class="row center">
         <h5 class="header col s12 light">
-        A continuación se presentan visualizaciones que permiten analizar el conjunto de datos ofrecidos por data set wiconsing
+        A continuación se presentan visualizaciones que permiten analizar el conjunto de datos ofrecidos por repositorio de data sets de la Universidad de Wisconsin.
         </h5>
       <br><br>
+      <br><br>
+      <div class="row center">
+        <a href="info.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Información General</a>
+      </div>
+      
 
     </div>
   </div>
@@ -63,42 +64,38 @@
 
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">swap_vert</i></h2>
-            <h5 class="center">Correlación entre atributos celulares</h5>
+        <div class="col s12 m4 card red lighten-5 medium">
+            <div class="icon-block card-content">
+              <h5 class="center">Correlación entre atributos celulares</h5>
 
-            <p class="light">Texto descripción</p>
-
-            <div class="row center">
-              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
+              <p class="light center">En esta vista se describe la correlación entre los diversos atributos que permiten determinar si una célula tumoral es benigna o maligna, correlación obtenida acorde al conjunto de datos.</p>
+            <div class="row center card-action">
+              <a href="correlacion.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Ver</a>
             </div>
           </div>
         </div>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">pie_chart</i></h2>
-            <h5 class="center">Visualización entidades</h5>
+        <div class="col s12 m4 card red lighten-4 medium">
+          <div class="icon-block card-content">
+            <h5 class="center">Tendencia central</h5>
 
-            <p class="light">Texto descripción</p>
+            <p class="light center">En esta vista se presentan algunas las medidas de tendencia central, como los on la media y la varianza.</p>
 
-            <div class="row center">
-              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
+            <div class="row center card-action">
+              <a href="tendenciaCentral.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Ver</a>
             </div>
 
           </div>
         </div>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">check_circle</i></h2>
-            <h5 class="center">Clasificacion</h5>
+        <div class="col s12 m4 card red lighten-3 medium">
+          <div class="icon-block card-content">
+            <h5 class="center">Clasificacion celular</h5>
 
-            <p class="light">Texto descripción</p>
+            <p class="light center">En esta vista se presentas arboles de desición, con sus correspondientes reglas de asociación, donde se describen las soluciones exitosas y las erróneas.</p>
 
-            <div class="row center">
-              <a href="#" id="download-button" class="btn-large waves-effect waves-light pink lighten-4">Ver</a>
+            <div class="row center card-action">
+              <a href="clasificacion.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Ver</a>
             </div>
 
           </div>
@@ -106,11 +103,7 @@
       </div>
 
     </div>
-    <br><br>
 
-    <div class="section">
-
-    </div>
   </div>
 
   <footer class="page-footer red lighten-2 ">
