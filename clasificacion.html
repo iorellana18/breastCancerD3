@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Proyecto visualización</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="node_modules/materialize-css/bin/materialize.css" 
+        type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="local/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+  <!--  Scripts-->
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/materialize-css/bin/materialize.js"></script>
+  <script src="local/js/init.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="local/js/radarchart.js"></script>
+  <style>
+    .node {
+      cursor: pointer;
+    }
+
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+
+    .node text {
+      font: 10px sans-serif;
+    }
+
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 1.5px;
+    }
+  </style>
+
+</head>
+<body ng-app>
+  
+  <nav class="red lighten-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><i class="material-icons">home</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="diccionario.html">Diccionario de atributos</a></li>
+        <li><a href="datosTabulados.html">Datos tabulados</a></li>
+        <li><a href="correlacion.html">Correlación</a></li>
+        <li><a href="comparacion.html">Comparación</a></li>
+        <li><a href="#">Clasificación</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="diccionario.html">Diccionario de atributos</a></li>
+        <li><a href="datosTabulados.html">Datos tabulados</a></li>
+        <li><a href="correlacion.html">Correlación</a></li>
+        <li><a href="comparacion.html">Comparación</a></li>
+        <li><a href="#">Clasificación</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="">
+    <div class="section">
+      <div id="body" class="center-align">
+       
+
+         <script src="http://d3js.org/d3.v3.min.js"></script>
+          <script>
+
+          var margin = {top: 10, right: 70, bottom: 20, left: 70},
+              width = 1560- margin.right - margin.left,
+              height = 800 - margin.top - margin.bottom;
+
+          var i = 0,
+              duration = 750,
+              root;
+
+          var tree = d3.layout.tree()
+              .size([height, width]);
+
+          var diagonal = d3.svg.diagonal()
+              .projection(function(d) { return [d.y, d.x]; });
+
+          var svg = d3.select("#body").append("svg")
+              .attr("width", width + margin.right + margin.left)
+              .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+          d3.json("local/files/arbol.json", function(error, flare) {
+            if (error) throw error;
+
+            root = flare;
+            root.x0 = height / 2;
+            root.y0 = 0;
+
+            function collapse(d) {
+              if (d.children) {
+                d._children = d.children;
+                d._children.forEach(collapse);
+                d.children = null;
+              }
+            }
+
+            root.children.forEach(collapse);
+            update(root);
+          });
+
+          d3.select(self.frameElement).style("height", "800px");
+
+          function update(source) {
+
+            // Compute the new tree layout.
+            var nodes = tree.nodes(root).reverse(),
+                links = tree.links(nodes);
+
+            // Normalize for fixed-depth.
+            nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+            // Update the nodes…
+            var node = svg.selectAll("g.node")
+                .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+            // Enter any new nodes at the parent's previous position.
+            var nodeEnter = node.enter().append("g")
+                .attr("class", "node")
+                .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+                .on("click", click);
+
+            nodeEnter.append("circle")
+                .attr("r", 5)
+                .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+            nodeEnter.append("text")
+                .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+                .attr("dy", ".35em")
+                .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+                .text(function(d) { return d.name; })
+                .style("fill-opacity", 1e-6);
+
+            // Transition nodes to their new position.
+            var nodeUpdate = node.transition()
+                .duration(duration)
+                .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+            nodeUpdate.select("circle")
+                .attr("r", 7.5)
+                .style("fill", function(d) { 
+                  if(d.valor==4){
+                  return d._children ? "lightsteelblue" : "#E9967A"; 
+                }else if(d.valor==2){
+                  return d._children ? "lightsteelblue" : "#37c633";
+                }else{
+                  return d._children ? "lightsteelblue" : "#fff";
+                }
+                }).style("stroke",function(d,i){
+                  if(d.valor==4 || d.valor ==2){
+                    return "#fff";
+                  }
+                });
+
+            nodeUpdate.select("text")
+                .style("fill-opacity", 1);
+
+            // Transition exiting nodes to the parent's new position.
+            var nodeExit = node.exit().transition()
+                .duration(duration)
+                .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+                .remove();
+
+            nodeExit.select("circle")
+                .attr("r", 1e-6);
+
+            nodeExit.select("text")
+                .style("fill-opacity", 1e-6);
+
+            // Update the links…
+            var link = svg.selectAll("path.link")
+                .data(links, function(d) { return d.target.id; });
+
+            // Enter any new links at the parent's previous position.
+            link.enter().insert("path", "g")
+                .attr("class", "link")
+                .attr("d", function(d) {
+                  var o = {x: source.x0, y: source.y0};
+                  return diagonal({source: o, target: o});
+                });
+
+            // Transition links to their new position.
+            link.transition()
+                .duration(duration)
+                .attr("d", diagonal);
+
+            // Transition exiting nodes to the parent's new position.
+            link.exit().transition()
+                .duration(duration)
+                .attr("d", function(d) {
+                  var o = {x: source.x, y: source.y};
+                  return diagonal({source: o, target: o});
+                })
+                .remove();
+
+            // Stash the old positions for transition.
+            nodes.forEach(function(d) {
+              d.x0 = d.x;
+              d.y0 = d.y;
+            });
+          }
+
+          // Toggle children on click.
+          function click(d) {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          }
+
+          </script>
+
+
+      </div>
+       
+    </div>
+  </div>
+
+  <footer class="page-footer red lighten-2 ">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Visualización de Datos</h5>
+          <p class="grey-text text-lighten-4">
+          Como equipo, creamos esta pagina, con el fin de facilitar la visualización y análisis de los datos que entrega el Data Set Breast Cancer, que describe las caracterizaras de las células tumorales mamarias, cuando son benignas o malignas. Todo esto se desarrollo para el ramo Visualización de Datos de la <a href="http://www.usach.cl/"> Universidad de Santiago </a>, con el profesor Diago Avila Orellana.
+          </p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Recursos</h5>
+          <ul>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data">Data Set</a></li>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.names">Descripcion Data set</a></li>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Original)">Breast Cancer Wisconsin (Original) Data Set</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Otros</h5>
+          <ul>
+            <li><a class="white-text" href="#!"><img src="local/img/github.ico"></br> BreastCancerD3 GitHub Project</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Creado por Elías González e Ian Orellana
+      </div>
+    </div>
+  </footer>
+
+  </body>
+</html>
