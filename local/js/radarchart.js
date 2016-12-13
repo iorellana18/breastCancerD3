@@ -1,12 +1,3 @@
-//Practically all this code comes from https://github.com/alangrafu/radar-chart-d3
-//I only made some additions and aesthetic adjustments to make the chart look better 
-//(of course, that is only my point of view)
-//Such as a better placement of the titles at each line end, 
-//adding numbers that reflect what each circular level stands for
-//Not placing the last level and slight differences in color
-//
-//For a bit of extra information check the blog about it:
-//http://nbremer.blogspot.nl/2013/09/making-d3-radar-chart-look-bit-better.html
 
 var RadarChart = {
   draw: function(id, d, options){
@@ -19,13 +10,12 @@ var RadarChart = {
 	 levels: 3,
 	 maxValue: 0,
 	 radians: 2 * Math.PI,
-	 opacityArea: 0.5,
+	 opacityArea: 0,
 	 ToRight: 5,
 	 TranslateX: 80,
 	 TranslateY: 30,
 	 ExtraWidthX: 100,
-	 ExtraWidthY: 100,
-	 color: d3.scale.category10()
+	 ExtraWidthY: 100
 	};
 	
 	if('undefined' !== typeof options){
@@ -39,7 +29,6 @@ var RadarChart = {
 	var allAxis = (d[0].map(function(i, j){return i.axis}));
 	var total = allAxis.length;
 	var radius = cfg.factor*Math.min(cfg.w/2, cfg.h/2);
-	var Format = d3.format('');
 	d3.select(id).select("svg").remove();
 	
 	var g = d3.select(id)
@@ -51,24 +40,7 @@ var RadarChart = {
 			;
 
 	var tooltip;
-	
-	//Circular segments
-	for(var j=0; j<cfg.levels-1; j++){
-	  var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
-	  g.selectAll(".levels")
-	   .data(allAxis)
-	   .enter()
-	   .append("svg:line")
-	   .attr("x1", function(d, i){return levelFactor*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
-	   .attr("y1", function(d, i){return levelFactor*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
-	   .attr("x2", function(d, i){return levelFactor*(1-cfg.factor*Math.sin((i+1)*cfg.radians/total));})
-	   .attr("y2", function(d, i){return levelFactor*(1-cfg.factor*Math.cos((i+1)*cfg.radians/total));})
-	   .attr("class", "line")
-	   .style("stroke", "grey")
-	   .style("stroke-opacity", "0.75")
-	   .style("stroke-width", "0.3px")
-	   .attr("transform", "translate(" + (cfg.w/2-levelFactor) + ", " + (cfg.h/2-levelFactor) + ")");
-	}
+
 
 	//Text indicating at what % each level is
 	for(var j=0; j<cfg.levels; j++){
@@ -84,7 +56,7 @@ var RadarChart = {
 	   .style("font-size", "10px")
 	   .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
 	   .attr("fill", "#737373")
-	   .text(Format((j+1)*cfg.maxValue/cfg.levels));
+	   .text((j+1)*cfg.maxValue/cfg.levels);
 	}
 	
 	series = 0;
@@ -95,7 +67,7 @@ var RadarChart = {
 			.append("g")
 			.attr("class", "axis");
 
-	axis.append("line")
+axis.append("line")
 		.attr("x1", cfg.w/2)
 		.attr("y1", cfg.h/2)
 		.attr("x2", function(d, i){return cfg.w/2*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
@@ -108,7 +80,7 @@ var RadarChart = {
 		.attr("class", "legend")
 		.text(function(d){return d})
 		.style("font-family", "sans-serif")
-		.style("font-size", "11px")
+		.style("font-size", "12px")
 		.attr("text-anchor", "middle")
 		.attr("dy", "1.5em")
 		.attr("transform", function(d, i){return "translate(0, -10)"})
@@ -132,7 +104,15 @@ var RadarChart = {
 					 .append("polygon")
 					 .attr("class", "radar-chart-serie"+series)
 					 .style("stroke-width", "2px")
-					 .style("stroke", cfg.color(series))
+					 .style("stroke", function(d,i){
+					 	if(series==0){
+							return "#353fd8";
+						}if(series==1){
+							return "#F44336";
+						}else{
+							return "#4CAF50";
+						}
+					 })
 					 .attr("points",function(d) {
 						 var str="";
 						 for(var pti=0;pti<d.length;pti++){
@@ -140,22 +120,8 @@ var RadarChart = {
 						 }
 						 return str;
 					  })
-					 .style("fill", function(j, i){return cfg.color(series)})
-					 .style("fill-opacity", cfg.opacityArea)
-					 .on('mouseover', function (d){
-										z = "polygon."+d3.select(this).attr("class");
-										g.selectAll("polygon")
-										 .transition(200)
-										 .style("fill-opacity", 0.1); 
-										g.selectAll(z)
-										 .transition(200)
-										 .style("fill-opacity", .7);
-									  })
-					 .on('mouseout', function(){
-										g.selectAll("polygon")
-										 .transition(200)
-										 .style("fill-opacity", cfg.opacityArea);
-					 });
+					 .style("fill", "#fff")
+					 .style("fill-opacity", "0")
 	  series++;
 	});
 	series=0;
@@ -179,7 +145,15 @@ var RadarChart = {
 		  return cfg.h/2*(1-(Math.max(j.value, 0)/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total));
 		})
 		.attr("data-id", function(j){return j.axis})
-		.style("fill", cfg.color(series)).style("fill-opacity", .9)
+		.style("fill", function(d,i){
+			if(series==0){
+				return "#353fd8";
+			}if(series==1){
+				return "#F44336";
+			}else{
+				return "#4CAF50";
+			}
+		}).style("fill-opacity", .9)
 		.on('mouseover', function (d){
 					newX =  parseFloat(d3.select(this).attr('cx')) - 10;
 					newY =  parseFloat(d3.select(this).attr('cy')) - 5;
@@ -187,25 +161,16 @@ var RadarChart = {
 					tooltip
 						.attr('x', newX)
 						.attr('y', newY)
-						.text(Format(d.value))
+						.text(d.value)
 						.transition(200)
 						.style('opacity', 1);
 						
-					z = "polygon."+d3.select(this).attr("class");
-					g.selectAll("polygon")
-						.transition(200)
-						.style("fill-opacity", 0.1); 
-					g.selectAll(z)
-						.transition(200)
-						.style("fill-opacity", .7);
+					
 				  })
 		.on('mouseout', function(){
 					tooltip
 						.transition(200)
 						.style('opacity', 0);
-					g.selectAll("polygon")
-						.transition(200)
-						.style("fill-opacity", cfg.opacityArea);
 				  })
 		.append("svg:title")
 		.text(function(j){return Math.max(j.value, 0)});

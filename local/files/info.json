@@ -1,0 +1,127 @@
+{
+	"name" : "Informaciónm de Atributos",
+	"children" :
+	[
+		{
+			"name" : "Clump Thickness (Agrupación celular)",
+			"children" : 
+			[
+				{
+					"name" : "Variable que representa el grado en que las células se encuentran agrupadas. Esta es una  característica útil porque las células benignas tienden a "
+				},{
+					"name" : "agruparse  en mono-capas, mientras que las células cancerosas a menudo se agrupan en múltiples capas."
+				}
+			]	
+		},
+		{
+			"name" : "Uniformity of Cell Size (Uniformidad del tamaño celular)",
+			"children" : 
+			[
+				{
+					"name" : "Variable que representa el tamaño de la célula. Las células de cáncer tienden a variar en tamaño."
+				}
+			]
+		},
+		{
+			"name" : "Uniformity of Cell Shape (Uniformidad de la forma celular)",
+			"children" : 
+			[
+				{
+					"name" : "Variable que representa la uniformidad de la forma celular. Las células de cáncer tienden a variar en forma. Puede tomar valores enteros entre  "
+				},
+				{
+					"name" : "el intervalo [1,10], donde 10 corresponde a deformidad celular. "
+				}
+			]
+		},
+		{
+			"name" : "Marginal Adhesion (Adhesión marginal celular)",
+			"children" : 
+			[
+				{
+					"name" : "Variable que representa el grado en que las células tienden a permanecer juntas. Las células normales tienden a permanecer juntas y las células"
+				},
+				{
+					"name" : " cancerosas  tienden a perder esta capacidad. Por lo tanto la pérdida de adherencia es un signo de malignidad."
+				}
+			]
+		},
+		{
+			"name" : "Single Epithelial Cell Size (Tamaño de la célula epitelial)",
+			"children" : 
+			[
+				{
+					"name" : "Variable que representa el tamaño de las células epiteliales. Las células epiteliales que se agrandan de manera significativa puede ser una célula"
+				},
+				{
+					"name" : "maligna."
+				}
+			]
+		},
+		{
+			"name" : "Bare Nuclei (Desnudez del núcleo)",
+			"children" : 
+			[
+				{
+					"name" : "Variable que representa el grado de desnudez de los núcleos celulares. Los núcleos que no están rodeados por el citoplasma (el resto de la célula),"
+				},
+				{
+					"name" : "pertenece a núcleos de células  que frecuentemente se ven en tumores benignos."
+				}
+			]
+		},
+		{
+			"name" : "Bland Chromatin (Textura de la cromatina)",
+			"children" : 
+			[
+				{
+					"name" : " Variable que representa la textura de la cromatina celular. Cuando se describe una textura uniforme del núcleo corresponde a una célula benigna. "
+				},
+				{
+					"name" : "En células de cáncer la cromatina tiende a ser más gruesa."
+				}
+			]
+		},
+		{
+			"name" : "Normal Nucleoli (Normalidad del nucléolo)",
+			"children" : 
+			[
+				{
+					"name" : "Variable que representa tamaño del nucléolo celular. Los nucléolos son estructuras pequeñas vistas en los núcleos. En las células normales, el"
+				},
+				{
+					"name" : "nucléolo suele ser muy pequeño. En las células cancerosas los nucléolos se vuelven más prominentes, y a veces hay más de uno por célula."
+				}
+			]
+		},
+		{
+			"name" : "Mitosis (Mitosis)"	,
+			"children" : 
+			[
+				{
+					"name" : "item Mitoses (Mitosis): Variable que representa el grado de división celular. La mitosis es el proceso de división celular que busca generar una "
+				},
+				{
+					"name" : "célula nueva con las  mismas características que el progenitor. Se cree que se relacionan con el cáncer por la reproducción indiscriminada de"
+				},
+				{
+					"name" : "células en el organismo."
+				}
+			]
+		},
+		{
+			"name" : "Class (Clase)",
+			"children" : 
+			[
+				{
+					"name" : "Atributo que representa la clase de la célula, si esta es de tipo benigna toma valor 2 y si es tipo maligna toma valor 4. Sólo puede tomar estos "
+				},
+				{
+					"name" : "dos valores."
+				}
+			]	
+		}
+	]
+}
+
+

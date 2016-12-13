@@ -3,62 +3,43 @@ var w = 500,
 
 var colorscale = d3.scale.category10();
 
-//Data
-
-var botonB = false;
-var dataMediaBenigno = null;
-var legendBenigno = 'Promedio Benigno';
-
-var botonM = false;
-var dataMediaMaligno = null;
-var legendMaligno = 'Promedio Maligno';
-
-var botonG = false;
-var dataMediaTotal = null;
-var legendTotal = 'Promedio General';
-
-var dataMediaBenigno = [
-			{axis:"Agrupación Celular",value:2.9563},
-			{axis:"Uniformidad Tamaño",value:1.3253},
-			{axis:"Uniformidad Forma",value:1.4432},
-			{axis:"Adhesión Marginal",value:1.3646},
-			{axis:"Tamaño epitelio",value:2.1200},
-			{axis:"Desnudez núcleo",value:1.3256},
-			{axis:"Textura cromatina",value:2.1004},
-			{axis:"Normalidad nucléolo",value:1.2903},
-			{axis:"Mitosis",value:1.0633}
-		  ];
-		
-var dataMediaMaligno = [
-			{axis:"Agrupación Celular",value:7.1950},
-			{axis:"Uniformidad Tamaño",value:6.5726},
-			{axis:"Uniformidad Forma",value:6.5601},
-			{axis:"Adhesión Marginal",value:5.5477},
-			{axis:"Tamaño epitelio",value:5.2987},
-			{axis:"Desnudez núcleo",value:9.5678},
-			{axis:"Textura cromatina",value:5.9792},
-			{axis:"Normalidad nucléolo",value:5.8630},
-			{axis:"Mitosis",value:2.5892}
-		  ];
-
-var dataMediaTotal = [
-			{axis:"Agrupación Celular",value:4.4177},
-			{axis:"Uniformidad Tamaño",value:3.1344},
-			{axis:"Uniformidad Forma",value:3.2074},
-			{axis:"Adhesión Marginal",value:2.8068},
-			{axis:"Tamaño epitelio",value:3.2160},
-			{axis:"Desnudez núcleo",value:5.5446},
-			{axis:"Textura cromatina",value:3.4377},
-			{axis:"Normalidad nucléolo",value:2.8669},
-			{axis:"Mitosis",value:1.5894}
-];
-
 //Legend titles
-var LegendOptions = [legendBenigno, legendMaligno, legendTotal];
+var LegendOptions = ['General','Maligno','Benigno'];
 
-var data = [dataMediaBenigno, dataMediaMaligno, dataMediaTotal];
-
-var texto = "Comparación entre medias para cada atributo medido de las celulas";
+//Data
+var d = [
+		  [
+			{axis:"Agrupación celular",value:4.41},
+			{axis:"Uniformidad de tamaño",value:3.13},
+			{axis:"Uniformidad de forma",value:3.2},
+			{axis:"Adhesión marginal",value:2.8},
+			{axis:"Tamaño epitetal",value:3.21},
+			{axis:"Desnudez de núcleo",value:5.54},
+			{axis:"Textura cromatina",value:3.43},
+			{axis:"Normalidad de nucleolo",value:2.86},
+			{axis:"Mitosis",value:1.58}
+		  ],[
+			{axis:"Agrupación celular",value:7.19},
+			{axis:"Uniformidad de tamaño",value:6.57},
+			{axis:"Uniformidad de forma",value:6.56},
+			{axis:"Adhesión marginal",value:5.54},
+			{axis:"Tamaño epitetal",value:5.29},
+			{axis:"Desnudez de núcleo",value:9.56},
+			{axis:"Textura cromatina",value:5.97},
+			{axis:"Normalidad de nucleolo",value:5.86},
+			{axis:"Mitosis",value:2.58}
+		  ],[
+			{axis:"Agrupación celular",value:2.95},
+			{axis:"Uniformidad de tamaño",value:1.32},
+			{axis:"Uniformidad de forma",value:1.44},
+			{axis:"Adhesión marginal",value:1.36},
+			{axis:"Tamaño epitetal",value:2.12},
+			{axis:"Desnudez de núcleo",value:1.32},
+			{axis:"Textura cromatina",value:2.1},
+			{axis:"Normalidad de nucleolo",value:1.29},
+			{axis:"Mitosis",value:1.06}
+		  ]
+		];
 
 //Options for the Radar chart, other than default
 var mycfg = {
@@ -71,7 +52,7 @@ var mycfg = {
 
 //Call function to draw the Radar chart
 //Will expect that data is in %'s
-RadarChart.draw("#chart", data, mycfg);
+RadarChart.draw("#chart", d, mycfg);
 
 ////////////////////////////////////////////
 /////////// Initiate legend ////////////////
@@ -84,21 +65,21 @@ var svg = d3.select('#body')
 	.attr("height", h)
 
 //Create the title for the legend
-// var text = svg.append("text")
-//	.attr("class", "title")
-//	.attr('transform', 'translate(90,0)') 
-//	.attr("x", w - 20)
-//	.attr("y", 10)
-//	.attr("font-size", "12px")
-//	.attr("fill", "#404040")
-//	.text(texto);
+var text = svg.append("text")
+	.attr("class", "title")
+	.attr('transform', 'translate(110,0)') 
+	.attr("x", w - 70)
+	.attr("y", 10)
+	.attr("font-size", "12px")
+	.attr("fill", "#404040")
+	.text("Tipos");
 		
 //Initiate Legend	
 var legend = svg.append("g")
 	.attr("class", "legend")
 	.attr("height", 100)
 	.attr("width", 200)
-	.attr('transform', 'translate(200,20)') 
+	.attr('transform', 'translate(110,20)') 
 	;
 	//Create colour squares
 	legend.selectAll('rect')
@@ -109,7 +90,17 @@ var legend = svg.append("g")
 	  .attr("y", function(d, i){ return i * 20;})
 	  .attr("width", 10)
 	  .attr("height", 10)
-	  .style("fill", function(d, i){ return colorscale(i);})
+	  .style("fill", function(d, i){ 
+	  	if(i==1){
+	  		return "#F44336";
+	  	}if(i==2){
+	  		return "#4CAF50";
+	  	}else{
+	  		return colorscale(i);
+	  	}
+	  	
+
+	  })
 	  ;
 	//Create text next to squares
 	legend.selectAll('text')

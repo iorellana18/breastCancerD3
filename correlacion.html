@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Proyecto visualización</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="node_modules/materialize-css/bin/materialize.css" 
+        type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="local/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <!--  Scripts-->
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/materialize-css/bin/materialize.js"></script>
+  <script src="local/js/init.js"></script>
+  <script src="node_modules/d3/build/d3.js"></script>
+  <script src="local/js/radarchart.js"></script>
         <style>
             table {
                 font: 12px sans-serif;
@@ -15,18 +30,80 @@
 
             }
         </style>
-    </head>
-    <body>
-        <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-        <script src="d3/d3.min.js"></script>
 
-        <script type="text/javascript"charset="utf-8">
-            d3.text("corr.csv", function(data) {
-                var parsedCSV = d3.csvParseRows(data);
+</head>
+<body ng-app>
+  
+  <nav class="red lighten-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><i class="material-icons">home</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="diccionario.html">Diccionario de atributos</a></li>
+        <li><a href="datosTabulados.html">Datos tabulados</a></li>
+        <li><a href="correlacion.html">Correlación</a></li>
+        <li><a href="comparacion.html">Comparación</a></li>
+        <li><a href="#">Clasificación</a></li>
+      </ul>
 
-                var container = d3.select("body")
-                    .append("table")
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="diccionario.html">Diccionario de atributos</a></li>
+        <li><a href="datosTabulados.html">Datos tabulados</a></li>
+        <li><a href="correlacion.html">Correlación</a></li>
+        <li><a href="comparacion.html">Comparación</a></li>
+        <li><a href="#">Clasificación</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 
+  <div class="container">
+    <div class="section card-panel hoverable" id="section">
+
+          <script type="text/javascript">
+                d3.text("local/files/corr.csv", function(data) {
+                    var parsedCSV = d3.csvParseRows(data);
+                    var table = d3.select('#section').append('table');
+
+                    var thead = table.append('thead');
+                    
+                    var col1 = thead.append('th');
+                    col1.html('');
+
+                    var col2 = thead.append('th');
+                    col2.html('Agrupación Celular');
+
+                    var col3 = thead.append('th');
+                    col3.html('Uniformidad Tamaño');
+
+                    var col4 = thead.append('th');
+                    col4.html('Uniformidad Forma');
+
+                    var col5 = thead.append('th');
+                    col5.html('Adhesión Marginal');
+
+                    var col6 = thead.append('th');
+                    col6.html('Tamaño epitelio');
+
+                    var col7 = thead.append('th');
+                    col7.html('Desnudez núcleo');
+                    
+                    var col8 = thead.append('th');
+                    col8.html('Textura cromatina');
+
+                    var col9 = thead.append('th');
+                    col9.html('Normalidad nucléolo');
+
+                    var col10 = thead.append('th');
+                    col10.html('Mitosis');
+
+                    var tbody = d3.select('table').append('tbody');
+
+                    table.attr("class","highlight centered responsive-table");
+
+                    tbody.attr("class","grey lighten-2");
+
+                    var container = d3.select("tbody")
                     .selectAll("tr")
                         .data(parsedCSV).enter()
                         .append("tr")
@@ -34,36 +111,70 @@
                     .selectAll("td")
                         .data(function(d) { return d; }).enter()
                         .append("td") .style("background-color", function(d,i) {
+                               if(d<0.2){
+                                   return "#fff";
+                               }else if(d<0.4){
+                                 return "#FAEBD7";
 
-                          
-                            if(d<0.2){
+                               }else if(d<0.6){
+                                 return "#FAB2A3";
 
-                               return "#fff";
+                               }else if(d<0.8){
+                                 return "#FA8072";
 
-                           }else if(d<0.4){
-                             return "#FAEBD7";
+                               }else if(d<1){
+                                 return "#FF0000";
 
-                           }else if(d<0.6){
-                             return "#FAB2A3";
-
-                           }else if(d<0.8){
-                             return "#FA8072";
-
-                           }else if(d<1){
-                             return "#FF0000";
-
-                           }else if(d==1){
-                                return "#ccc"
-                           }else{
-                             return "#fff";
-
-                           }
-
-
-                             
+                               }else if(d==1){
+                                    return "#ccc"
+                               }else{
+                                 return "#fff";
+                               }
                         } )
                         .text(function(d) { return d; });
-            });
-        </script>
-    </body>
 
+                    
+                     
+                });
+
+            </script>
+       
+    </div>
+  </div>
+
+  <footer class="page-footer red lighten-2 ">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Visualización de Datos</h5>
+          <p class="grey-text text-lighten-4">
+          Como equipo, creamos esta pagina, con el fin de facilitar la visualización y análisis de los datos que entrega el Data Set Breast Cancer, que describe las caracterizaras de las células tumorales mamarias, cuando son benignas o malignas. Todo esto se desarrollo para el ramo Visualización de Datos de la <a href="http://www.usach.cl/"> Universidad de Santiago </a>, con el profesor Diago Avila Orellana.
+          </p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Recursos</h5>
+          <ul>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data">Data Set</a></li>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.names">Descripcion Data set</a></li>
+            <li><a class="white-text" href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Original)">Breast Cancer Wisconsin (Original) Data Set</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Otros</h5>
+          <ul>
+            <li><a class="white-text" href="#!"><img src="local/img/github.ico"></br> BreastCancerD3 GitHub Project</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Creado por Elías González e Ian Orellana
+      </div>
+    </div>
+  </footer>
+
+  </body>
+</html>
