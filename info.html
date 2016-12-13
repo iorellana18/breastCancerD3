@@ -31,7 +31,7 @@
   -->
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
-
+  <script src="node_modules/d3/build/d3.js"></script>
   
 </head>
 <body ng-app>
@@ -39,24 +39,31 @@
   <nav class="red lighten-2" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><i class="material-icons">home</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="diccionario.html">Información General</a></li>
+        <li><a href="info.html">Información General</a></li>
         <li><a href="correlacion.html">Correlación atributos</a></li>
-        <li><a href="comparacion.html">Tendencia central</a></li>
+        <li><a href="tendenciaCentral.html">Tendencia central</a></li>
         <li><a href="clasificacion.html">Clasificación celular</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="diccionario.html">Información General</a></li>
+        <li><a href="info.html">Información General</a></li>
         <li><a href="correlacion.html">Correlación atributos</a></li>
-        <li><a href="comparacion.html">Tendencia central</a></li>
+        <li><a href="tendenciaCentral.html">Tendencia central</a></li>
         <li><a href="clasificacion.html">Clasificación celular</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
-  <div class="container">
-    <div class="section" id="section">
+  <div class="container center">
+  <div class="center-align">
+      <h5>Información general</h5>
+      <blockquote>
+        A continuación se presenta la información general del data set, se describen los atributos y sus significados. Ademas se presentan los datos tabulados, dentro de esta tabla se puede realizar una búsqueda en particular.
+      </blockquote>
+      </div>
+
+    <div class="section1" id="section1">
 
       <script>
 
@@ -75,7 +82,7 @@
           var diagonal = d3.svg.diagonal()
               .projection(function(d) { return [d.y, d.x]; });
 
-          var svg = d3.select("#section").append("svg")
+          var svg = d3.select("#section1").append("svg")
               .attr("width", width + margin.left + margin.right)
             .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -103,7 +110,7 @@
             // Compute the flattened node list. TODO use d3.layout.hierarchy.
             var nodes = tree.nodes(root);
 
-            var height = Math.max(500, nodes.length * barHeight + margin.top + margin.bottom);
+            var height = Math.max(250, nodes.length * barHeight + margin.top + margin.bottom);
 
             d3.select("svg").transition()
                 .duration(duration)
@@ -196,6 +203,105 @@
           </script>
 
     </div>
+
+    <div class="section1" id="section2">
+    <h4>Muestras Data Set</h4>
+    <input class="red darken-1" type="text" id="Input" onkeyup="Function()" placeholder="     Busqueda por Id...">    
+      <script type="text/javascript"charset="utf-8">
+            
+            d3.text("local/files/data.csv", function(data) {
+                var parsedCSV = d3.csvParseRows(data);
+
+                var table = d3.select('#section2').append("Table");
+                table.attr('id','table');
+                var thead = table.append('thead');
+                
+                var col1 = thead.append('th');
+                col1.html('Id');
+
+                var col2 = thead.append('th');
+                col2.html('Agrupación Celular');
+
+                var col3 = thead.append('th');
+                col3.html('Uniformidad Tamaño');
+
+                var col4 = thead.append('th');
+                col4.html('Uniformidad Forma');
+
+                var col5 = thead.append('th');
+                col5.html('Adhesión Marginal');
+
+                var col6 = thead.append('th');
+                col6.html('Tamaño epitelio');
+
+                var col7 = thead.append('th');
+                col7.html('Desnudez núcleo');
+                
+                var col8 = thead.append('th');
+                col8.html('Textura cromatina');
+
+                var col9 = thead.append('th');
+                col9.html('Normalidad nucléolo');
+
+                var col10 = thead.append('th');
+                col10.html('Mitosis');
+
+                var col11 = thead.append('th');
+                col11.html('Clase');
+                
+
+                var tbody = d3.select('table').append('tbody');
+
+                table.attr("class","bordered highlight centered responsive-table tablesorter");
+
+                tbody.attr("class","grey lighten-2");
+
+                var rows = d3.selectAll("tr");
+
+                var container = d3.select("tbody")
+                    .selectAll("tr")
+                        .data(parsedCSV).enter()
+                        .append("tr")
+ 
+                    .selectAll("td")
+                        .data(function(d) { return d; }).enter()
+                        .append("td") .style("background-color", function(d,i) {
+                            if (i == 10){
+                                if(d==2){
+                               return "#8FBC8F";
+                            }if(d==4){return "#E9967A";}
+                             }
+                        } )
+                        .text(function(d) { return d; });
+            });
+
+      </script>
+
+      <script>
+      function Function() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("Input");
+        filter = input.value.toUpperCase();
+        table = document.getElementsByTagName("table");
+        tr = table[0].getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+      </script>
+
+    </div>
+
   </div>
 
   <footer class="page-footer red lighten-2 ">
