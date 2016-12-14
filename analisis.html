@@ -16,11 +16,16 @@
   <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="node_modules/materialize-css/bin/materialize.js"></script>
   <script src="local/js/init.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="local/js/cairo.js"></script>
+  <style>
+
+  </style>
 
 </head>
 <body ng-app>
   
-  <nav class="red lighten-2" role="navigation">
+ <nav class="red lighten-2" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><i class="material-icons">home</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="info.html">Información General</a></li>
@@ -39,76 +44,22 @@
     </div>
   </nav>
 
-
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center red-text lighten-2-text">Breast Cancer Data Set</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">
-        A continuación se presentan visualizaciones que permiten analizar el conjunto de datos ofrecidos por repositorio de data sets de la Universidad de Wisconsin.
-        </h5>
-      <br><br>
-      <br><br>
-      <div class="row center">
-        <a href="info.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Información General</a>
-      </div>
-      
-
-    </div>
-  </div>
-
-
   <div class="container">
-    <div class="section">
+    <div class="section center">
 
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4 card red lighten-5 medium">
-            <div class="icon-block card-content">
-              <h5 class="center">Correlación entre atributos celulares</h5>
-
-              <p class="light center">En esta vista se describe la correlación entre los diversos atributos que permiten determinar si una célula tumoral es benigna o maligna, correlación obtenida acorde al conjunto de datos.</p>
-            <div class="row center card-action">
-              <a href="correlacion.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Ver</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s12 m4 card red lighten-4 medium">
-          <div class="icon-block card-content">
-            <h5 class="center">Tendencia central</h5>
-
-            <p class="light center">En esta vista se presentan algunas las medidas de tendencia central, como los on la media y la varianza.</p>
-
-            <div class="row center card-action">
-              <a href="tendenciaCentral.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Ver</a>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col s12 m4 card red lighten-3 medium">
-          <div class="icon-block card-content">
-            <h5 class="center">Clasificacion celular</h5>
-
-            <p class="light center">En esta vista se presentas arboles de desición, con sus correspondientes reglas de asociación, donde se describen las soluciones exitosas y las erróneas.</p>
-
-            <div class="row center card-action">
-              <a href="clasificacion.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Ver</a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row center">
-        <blockquote>
+    <div class="center-align">
+      <h5>Evaluación Cairo</h5>
+      <blockquote>
         El presente trabajo se analizo mediante el método compartido por Cairo, donde se evaluá entro otros la originalidad, abstracción, novedad, entre otros.
-        </blockquote>
-        <a href="analisis.html" id="download-button" class="btn-large waves-effect waves-light red darken-1">Evaluación Cairo</a>
+      </blockquote>
+      </div>
+    </div>
+      <div id="body" class="center-align">
+       <div id="chart">
+       </div>
+        <script type="text/javascript" src="local/js/cairoScript.js"></script>
+      </div>
+       
     </div>
   </div>
 
@@ -145,9 +96,6 @@
       </div>
     </div>
   </footer>
-
-
-  
 
   </body>
 </html>
