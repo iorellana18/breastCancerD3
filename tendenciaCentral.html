@@ -17,6 +17,7 @@
   <script src="node_modules/materialize-css/bin/materialize.js"></script>
   <script src="local/js/init.js"></script>
   <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="node_modules/d3/build/d3.min.js"></script>
   <script src="local/js/radarchart.js"></script>
   <style>
 
@@ -28,16 +29,16 @@
   <nav class="red lighten-2" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><i class="material-icons">home</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="diccionario.html">Información General</a></li>
+        <li><a href="info.html">Información General</a></li>
         <li><a href="correlacion.html">Correlación atributos</a></li>
-        <li><a href="comparacion.html">Tendencia central</a></li>
+        <li><a href="tendenciaCentral.html">Tendencia central</a></li>
         <li><a href="clasificacion.html">Clasificación celular</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="diccionario.html">Información General</a></li>
+        <li><a href="info.html">Información General</a></li>
         <li><a href="correlacion.html">Correlación atributos</a></li>
-        <li><a href="comparacion.html">Tendencia central</a></li>
+        <li><a href="tendenciaCentral.html">Tendencia central</a></li>
         <li><a href="clasificacion.html">Clasificación celular</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -61,8 +62,104 @@
       </div>
        
     </div>
-  </div>
 
+  <div class="container">
+    <div class="center-align">
+      
+      <h5>Varianza, Media, Moda y Mediana</h5>
+      <blockquote>
+        A continuación se presentan medidas de tendencia central como lo es la varianza promedio, media, moda y mediana.
+      </blockquote>
+    </div>
+
+    <div class="center" id="medidas">
+        <h5>Varianza</h5>
+        <blockquote>
+        A continuación se presentan las varianzas promedios para el conjunto de datos general, y agrupados por variables de clases. Benignos  y Malignos.
+      </blockquote>
+        <div id="tablaV" class="center-align">
+          <script type="text/javascript"charset="utf-8">
+            d3.text("local/files/varianza.csv", function(data) {
+                var parsedCSV = d3.csvParseRows(data);
+                var tabla = d3.select("#tablaV").append('table');
+                var thead = tabla.append('thead');
+                var tbody = tabla.append('tbody');
+
+                tabla.attr("class","bordered highlight centered");
+                
+                thead.append('th').html('Varianza').attr('class','center-align');
+                thead.append('th').html('Varianza Benignos').attr('class','center-align');
+                thead.append('th').html('Varianza Malignos').attr('class','center-align');
+
+                
+                var container = tbody
+
+                    .selectAll("tr")
+                        .data(parsedCSV).enter()
+                        .append("tr")
+ 
+                    .selectAll("td")
+                        .data(function(d) { return d; }).enter()
+                        .append("td") 
+                        .text(function(d)
+                        {    return d; 
+                        
+                        });
+            });
+        </script>
+        </div>
+    </div>
+
+
+    <div class="center" id="medidas">
+        <h5>Tendencia Central</h5>
+         <blockquote>
+        A continuación se presentan las medidas de tendencia central, Moda , Mediana y Media, para cada variable del conjunto total de datos de la muestra y separados por variable de clase.
+         </blockquote>
+
+        <div id="tablaG" class="center-align">
+          <script type="text/javascript"charset="utf-8">
+            d3.text("local/files/tendencia.csv", function(data) {
+                var parsedCSV = d3.csvParseRows(data);
+                var tabla = d3.select("#tablaG").append('table');
+                var thead = tabla.append('thead');
+                var tbody = tabla.append('tbody');
+
+                tabla.attr("class","bordered highlight centered");
+                
+                thead.append('th').html('Variables').attr('class','center-align');
+                thead.append('th').html('Moda General').attr('class','center-align');
+                thead.append('th').html('Moda Benignos').attr('class','center-align');
+                thead.append('th').html('Moda Malignos').attr('class','center-align');
+                thead.append('th').html('Mediana General').attr('class','center-align');
+                thead.append('th').html('Mediana Benignos').attr('class','center-align');
+                thead.append('th').html('Mediana Malignos').attr('class','center-align');
+                thead.append('th').html('Media General').attr('class','center-align');
+                thead.append('th').html('Media Benignos').attr('class','center-align');
+                thead.append('th').html('Media Malignos').attr('class','center-align');
+
+                
+                var container = tbody
+
+                    .selectAll("tr")
+                        .data(parsedCSV).enter()
+                        .append("tr")
+ 
+                    .selectAll("td")
+                        .data(function(d) { return d; }).enter()
+                        .append("td") 
+                        .text(function(d)
+                        {    return d; 
+                        
+                        });
+            });
+        </script>
+        </div>
+    </div>
+
+  </div>
+  </div>  
+     
   <footer class="page-footer red lighten-2 ">
     <div class="container">
       <div class="row">

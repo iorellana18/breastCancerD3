@@ -11,25 +11,16 @@
         type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="local/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+
   <!--  Scripts-->
   <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="node_modules/materialize-css/bin/materialize.js"></script>
   <script src="local/js/init.js"></script>
-  <script src="node_modules/d3/build/d3.js"></script>
-  <script src="local/js/radarchart.js"></script>
-        <style>
-            table {
-                font: 12px sans-serif;
-            }
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="local/js/cairo.js"></script>
+  <style>
 
-            td {
-                border-width: 1px;
-                padding: 8px;
-                border-style: solid;
-                border-color: #fff;
-
-            }
-        </style>
+  </style>
 
 </head>
 <body ng-app>
@@ -54,93 +45,20 @@
   </nav>
 
   <div class="container">
+    <div class="section center">
+
     <div class="center-align">
-      <h5>Correlación atributos</h5>
+      <h5>Evaluación Cairo</h5>
       <blockquote>
-        A continuación se presenta la correlación entre los atributos que componen el set de datos, permitiendo identificar cuales son los que mas se relacionan entre si de manera inversa o directamente proporcional.
+        El presente trabajo se analizo mediante el método compartido por Cairo, donde se evaluá entro otros la originalidad, abstracción, novedad, entre otros.
       </blockquote>
       </div>
-
-    <div class="section card-panel hoverable" id="section">
-
-          <script type="text/javascript">
-                d3.text("local/files/corr.csv", function(data) {
-                    var parsedCSV = d3.csvParseRows(data);
-                    var table = d3.select('#section').append('table');
-
-                    var thead = table.append('thead');
-                    
-                    var col1 = thead.append('th');
-                    col1.html('');
-
-                    var col2 = thead.append('th');
-                    col2.html('Agrupación Celular');
-
-                    var col3 = thead.append('th');
-                    col3.html('Uniformidad Tamaño');
-
-                    var col4 = thead.append('th');
-                    col4.html('Uniformidad Forma');
-
-                    var col5 = thead.append('th');
-                    col5.html('Adhesión Marginal');
-
-                    var col6 = thead.append('th');
-                    col6.html('Tamaño epitelio');
-
-                    var col7 = thead.append('th');
-                    col7.html('Desnudez núcleo');
-                    
-                    var col8 = thead.append('th');
-                    col8.html('Textura cromatina');
-
-                    var col9 = thead.append('th');
-                    col9.html('Normalidad nucléolo');
-
-                    var col10 = thead.append('th');
-                    col10.html('Mitosis');
-
-                    var tbody = d3.select('table').append('tbody');
-
-                    table.attr("class","highlight centered responsive-table");
-
-                    tbody.attr("class","grey lighten-2");
-
-                    var container = d3.select("tbody")
-                    .selectAll("tr")
-                        .data(parsedCSV).enter()
-                        .append("tr")
- 
-                    .selectAll("td")
-                        .data(function(d) { return d; }).enter()
-                        .append("td") .style("background-color", function(d,i) {
-                               if(d<0.2){
-                                   return "#fff";
-                               }else if(d<0.4){
-                                 return "#FAEBD7";
-
-                               }else if(d<0.6){
-                                 return "#FAB2A3";
-
-                               }else if(d<0.8){
-                                 return "#FA8072";
-
-                               }else if(d<1){
-                                 return "#FF0000";
-
-                               }else if(d==1){
-                                    return "#ccc"
-                               }else{
-                                 return "#fff";
-                               }
-                        } )
-                        .text(function(d) { return d; });
-
-                    
-                     
-                });
-
-            </script>
+    </div>
+      <div id="body" class="center-align">
+       <div id="chart">
+       </div>
+        <script type="text/javascript" src="local/js/cairoScript.js"></script>
+      </div>
        
     </div>
   </div>
