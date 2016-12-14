@@ -4,7 +4,7 @@ var w = 500,
 var colorscale = d3.scale.category10();
 
 //Legend titles
-var LegendOptions = ['General','Maligno','Benigno'];
+var LegendOptions = ['General','Clase Maligno','Clase Benigno'];
 
 //Data
 var d = [
@@ -72,7 +72,7 @@ var text = svg.append("text")
 	.attr("y", 10)
 	.attr("font-size", "12px")
 	.attr("fill", "#404040")
-	.text("Tipos");
+	.text("Conjunto de datos");
 		
 //Initiate Legend	
 var legend = svg.append("g")
