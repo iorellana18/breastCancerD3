@@ -4,6 +4,7 @@
   
   {
    "name": "Desnudez del nucleo",
+   "valor": "1",
    "children": [
    	{
    		"name" : "Alta (maligno 174/6)",
@@ -21,6 +22,7 @@
    				"children" : [
    					{
    						"name" : "Alta agrupación celular",
+              "valor" : "1",
    						"children" : [
    							{	
    								"name": "Alta normalidad en el nucleolo (maligno 5)",

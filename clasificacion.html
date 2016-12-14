@@ -77,10 +77,10 @@
 
          <script src="http://d3js.org/d3.v3.min.js"></script>
           <script>
-
+          // Variables de largo
           var margin = {top: 10, right: 70, bottom: 20, left: 70},
-              width = 1560- margin.right - margin.left,
-              height = 800 - margin.top - margin.bottom;
+              width = 1160- margin.right - margin.left,
+              height = 560 - margin.top - margin.bottom;
 
           var i = 0,
               duration = 750,
@@ -98,6 +98,8 @@
             .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+           // Lee json   
           d3.json("local/files/arbol.json", function(error, flare) {
             if (error) throw error;
 
@@ -105,6 +107,8 @@
             root.x0 = height / 2;
             root.y0 = 0;
 
+
+            // función de retracción
             function collapse(d) {
               if (d.children) {
                 d._children = d.children;
@@ -121,18 +125,18 @@
 
           function update(source) {
 
-            // Compute the new tree layout.
+            // Nuevo tree layout
             var nodes = tree.nodes(root).reverse(),
                 links = tree.links(nodes);
 
-            // Normalize for fixed-depth.
-            nodes.forEach(function(d) { d.y = d.depth * 180; });
+            // Normaliza largo
+            nodes.forEach(function(d) { d.y = d.depth * 120; });
 
-            // Update the nodes…
+            // Actualiza nodos
             var node = svg.selectAll("g.node")
                 .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-            // Enter any new nodes at the parent's previous position.
+            //Ingresa los nuevos nodos a la posición de sus padres
             var nodeEnter = node.enter().append("g")
                 .attr("class", "node")
                 .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
@@ -144,16 +148,23 @@
 
             nodeEnter.append("text")
                 .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
-                .attr("dy", ".35em")
+                .attr("dy", function(d){
+                  if(d.valor==1){
+                    return ".01em";
+                  }else{
+                    return ".85em";
+                  }
+                })
                 .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
                 .text(function(d) { return d.name; })
                 .style("fill-opacity", 1e-6);
 
-            // Transition nodes to their new position.
+            // Nuevas posiciones
             var nodeUpdate = node.transition()
                 .duration(duration)
                 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
+            // Color relleno y stroke en nodos
             nodeUpdate.select("circle")
                 .attr("r", 7.5)
                 .style("fill", function(d) { 
@@ -173,7 +184,7 @@
             nodeUpdate.select("text")
                 .style("fill-opacity", 1);
 
-            // Transition exiting nodes to the parent's new position.
+            // Nodos existentes a sus nuevas posiciones
             var nodeExit = node.exit().transition()
                 .duration(duration)
                 .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
@@ -185,11 +196,11 @@
             nodeExit.select("text")
                 .style("fill-opacity", 1e-6);
 
-            // Update the links…
+           
             var link = svg.selectAll("path.link")
                 .data(links, function(d) { return d.target.id; });
 
-            // Enter any new links at the parent's previous position.
+            
             link.enter().insert("path", "g")
                 .attr("class", "link")
                 .attr("d", function(d) {
@@ -197,12 +208,11 @@
                   return diagonal({source: o, target: o});
                 });
 
-            // Transition links to their new position.
+         
             link.transition()
                 .duration(duration)
                 .attr("d", diagonal);
 
-            // Transition exiting nodes to the parent's new position.
             link.exit().transition()
                 .duration(duration)
                 .attr("d", function(d) {
@@ -211,14 +221,14 @@
                 })
                 .remove();
 
-            // Stash the old positions for transition.
+         
             nodes.forEach(function(d) {
               d.x0 = d.x;
               d.y0 = d.y;
             });
           }
 
-          // Toggle children on click.
+          // Función de collapse con click
           function click(d) {
             if (d.children) {
               d._children = d.children;
