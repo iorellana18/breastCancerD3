@@ -5,7 +5,7 @@ var colorscale = d3.scale.category10();
 
 
 
-//Data
+
 var d = [
 		  [
 			{axis:"",value:2.5},
@@ -27,7 +27,6 @@ var d = [
 		  ]
 		];
 
-//Options for the Radar chart, other than default
 var mycfg = {
   w: w,
   h: h,
@@ -36,13 +35,8 @@ var mycfg = {
   ExtraWidthX: 300
 }
 
-//Call function to draw the Radar chart
-//Will expect that data is in %'s
 RadarChart.draw("#chart", d, mycfg);
 
-////////////////////////////////////////////
-/////////// Initiate legend ////////////////
-////////////////////////////////////////////
 
 var svg = d3.select('#body')
 	.selectAll('svg')
@@ -50,7 +44,6 @@ var svg = d3.select('#body')
 	.attr("width", w+300)
 	.attr("height", h)
 
-//Create the title for the legend
 var text = svg.append("text")
 	.attr("class", "title")
 	.attr('transform', 'translate(90,0)') 

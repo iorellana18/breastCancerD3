@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Proyecto visualización</title>
 
-  <!-- CSS  -->
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="node_modules/materialize-css/bin/materialize.css" 
         type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -22,14 +22,14 @@
     }
   </style>
 
-  <!--  Scripts-->
-  <script src="node_modules/jquery/dist/jquery.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
   
-  <!--
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  
+  
   <script src="node_modules/materialize-css/bin/materialize.js"></script>
   <script src="local/js/init.js"></script>
-  -->
+  
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="node_modules/d3/build/d3.js"></script>
@@ -87,7 +87,7 @@
               .attr("width", width + margin.left + margin.right)
             .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+              //Funcion para iniciar con hojas retraidas
           d3.json("local/files/info.json", function(error, flare) {
             if (error) throw error;
 
@@ -108,7 +108,7 @@
 
           function update(source) {
 
-            // Compute the flattened node list. TODO use d3.layout.hierarchy.
+            
             var nodes = tree.nodes(root);
 
             var height = Math.max(250, nodes.length * barHeight + margin.top + margin.bottom);
@@ -121,12 +121,12 @@
                 .duration(duration)
                 .style("height", height + "px");
 
-            // Compute the "layout".
+            
             nodes.forEach(function(n, i) {
               n.x = i * barHeight;
             });
 
-            // Update the nodes…
+          
             var node = svg.selectAll("g.node")
                 .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
@@ -135,7 +135,7 @@
                 .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
                 .style("opacity", 1e-6);
 
-            // Enter any new nodes at the parent's previous position.
+            
             nodeEnter.append("rect")
                 .attr("y", -barHeight / 2)
                 .attr("height", barHeight)
@@ -148,7 +148,7 @@
                 .attr("dx", 5.5)
                 .text(texto);
 
-            // Transition nodes to their new position.
+            
             nodeEnter.transition()
                 .duration(duration)
                 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
@@ -162,7 +162,7 @@
                 .style("fill", color)
                 .style("stroke",strokeColor);
 
-            // Transition exiting nodes to the parent's new position.
+           
             node.exit().transition()
                 .duration(duration)
                 .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
@@ -171,14 +171,13 @@
 
 
 
-            // Stash the old positions for transition.
+           
             nodes.forEach(function(d) {
               d.x0 = d.x;
               d.y0 = d.y;
             });
           }
-
-          // Toggle children on click.
+          // Funcion para collapsar en click
           function click(d) {
             if (d.children) {
               d._children = d.children;
@@ -190,6 +189,7 @@
             update(d);
           }
 
+          //Funciones de color y texto para padres e hijos
           function color(d) {
             return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
           }
@@ -287,7 +287,7 @@
         table = document.getElementsByTagName("table");
         tr = table[0].getElementsByTagName("tr");
 
-        // Loop through all table rows, and hide those who don't match the search query
+        
         for (i = 0; i < tr.length; i++) {
           td = tr[i].getElementsByTagName("td")[0];
           if (td) {
