@@ -1,4 +1,5 @@
-
+//Funvión para calcular angulos de lineas
+//Se modifica polygon para incluir colores acorde
 var RadarChart = {
   draw: function(id, d, options){
   var cfg = {
@@ -42,11 +43,11 @@ var RadarChart = {
 	var tooltip;
 
 
-	//Text indicating at what % each level is
+	
 	for(var j=0; j<cfg.levels; j++){
 	  var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
 	  g.selectAll(".levels")
-	   .data([1]) //dummy data
+	   .data([1]) 
 	   .enter()
 	   .append("svg:text")
 	   .attr("x", function(d){return levelFactor*(1-cfg.factor*Math.sin(0));})
